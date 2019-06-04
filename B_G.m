@@ -1,0 +1,361 @@
+function res = B_G (data)
+d =  data.density ; % Density
+alpha = 1000;
+%time = 0; % time
+time2 = data.time;
+time = data.time + 23; % chainging this for advantage
+data.d = d;
+data.alpha = alpha;
+%last_p = 100* (alpha / d) + (100 *(1 / d));
+
+
+% lab alaba .....
+x = d;
+y = d;
+size_of_space = 0;
+while (x <= 100)
+   while (y <= 100)
+      %current_p = x* (alpha / d) + (y *(1 / d));
+            
+        % Right
+        
+            x_p = x + d ;
+            y_p = y ;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            
+            if (isinany(x_p , y_p , time ) == 0)
+                size_of_space = size_of_space +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            
+            % RU 45
+            x_p = x+d ;
+            y_p = y + d;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+			size_of_space = size_of_space +1;
+			
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            % RUU 45/2
+            %x_p = x+d ;
+            %y_p = y + (2*d);
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            %if (isinany(x_p , y_p , time ) == 0)
+			%size_of_space = size_of_space +1;
+			
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            %end
+            
+            % RD 45
+            x_p = x + d;
+            y_p = y - d;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+			size_of_space = size_of_space +1;
+			
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            % RDD 45/2
+            %x_p = x + d ;
+            %y_p = y - (2*d);
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            %if (isinany(x_p , y_p , time ) == 0)
+			%size_of_space = size_of_space +1;
+			
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            %end
+            
+            % UP
+            x_p = x ;
+            y_p = y + d;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+			size_of_space = size_of_space +1;
+			
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            %67.5 up
+            %x_p = x + (2*d) ;
+            %y_p = y + d;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            %if (isinany(x_p , y_p , time ) == 0)
+			%size_of_space = size_of_space +1;
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            %end
+            
+            %67.5 down
+            %x_p = x + (2*d) ;
+            %y_p = y - d;
+            %next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            %if (isinany(x_p , y_p , time ) == 0)
+			%size_of_space = size_of_space +1;
+               % s = [s , int32(current_p)];
+               % w = [w , w_n];
+               % t = [t , int32(next_p)];
+            %end
+            
+            %disp (['y = ' num2str(y)]);
+       y = y+d;
+   end
+   %disp (['x = ' num2str(x)]);
+   y = d;
+   x = x +d;
+   %disp(['Progress : ' num2str((current_p/last_p)*100) ' %'])
+end
+
+if (data.is_first == 1) && (isinany(data.sx , data.sy , time2 ) == 0) && (isinany(data.sx , data.sy , time ) > 0)
+    s = zeros(1, size_of_space+1);
+    t = zeros(1, size_of_space+1);
+    w = zeros(1, size_of_space+1);
+else
+    s = zeros(1, size_of_space);
+    t = zeros(1, size_of_space);
+    w = zeros(1, size_of_space);
+end
+
+
+%Array = zeros(1, size_of_space);
+
+% x* (100 / d) + (y *(1 / d));  index of NOD
+x = d;
+y = d;
+pointer = 1;
+while (x <= 100)
+   while (y <= 100)
+      current_p = current_position(x , y , data);
+            
+        % Right
+        
+            x_p = x + d ;
+            y_p = y ;
+            next_p = current_position(x_p , y_p , data);
+           % next_p = x_p* (alpha / d) + (y_p *(1 / d));
+            w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            
+            if (isinany(x_p , y_p , time ) == 0)
+                
+                s(1,pointer) = int32(current_p);
+                w(1,pointer) = w_n;
+                t(1,pointer) = int32(next_p);
+                pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            
+            % RU 45
+            x_p = x+d ;
+            y_p = y + d;
+            next_p = current_position(x_p , y_p , data);
+            w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+                
+                s(1,pointer) = int32(current_p);
+                w(1,pointer) = w_n;
+                t(1,pointer) = int32(next_p);
+                pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            % RUU 45/2
+            %x_p = x+d ;
+            %y_p = y + (2*d);
+            %next_p = current_position(x_p , y_p , data);
+            %w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            %if (isinany(x_p , y_p , time ) == 0)
+                
+               % s(1,pointer) = int32(current_p);
+               % w(1,pointer) = w_n;
+               % t(1,pointer) = int32(next_p);
+               % pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+           % end
+            
+            % RD 45
+            x_p = x + d;
+            y_p = y - d;
+            next_p = current_position(x_p , y_p , data);
+            w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+                
+                s(1,pointer) = int32(current_p);
+                w(1,pointer) = w_n;
+                t(1,pointer) = int32(next_p);
+                pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            % RDD 45/2
+%             x_p = x + d ;
+%             y_p = y - (2*d);
+%             next_p = current_position(x_p , y_p , data);
+%             w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+%             if (isinany(x_p , y_p , time ) == 0)
+%                 
+%                 s(1,pointer) = int32(current_p);
+%                 w(1,pointer) = w_n;
+%                 t(1,pointer) = int32(next_p);
+%                 pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+%             end
+            
+            % UP
+            x_p = x ;
+            y_p = y + d;
+            next_p = current_position(x_p , y_p , data);
+            w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+            if (isinany(x_p , y_p , time ) == 0)
+                
+                s(1,pointer) = int32(current_p);
+                w(1,pointer) = w_n;
+                t(1,pointer) = int32(next_p);
+                pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+            end
+            
+            %67.5 up
+%             x_p = x + (2*d) ;
+%             y_p = y + d;
+%             next_p = current_position(x_p , y_p , data);
+%             w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+%             if (isinany(x_p , y_p , time ) == 0)
+%                 
+%                 s(1,pointer) = int32(current_p);
+%                 w(1,pointer) = w_n;
+%                 t(1,pointer) = int32(next_p);
+%                 pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+%             end
+            
+            %67.5 down
+%             x_p = x + (2*d) ;
+%             y_p = y - d;
+%             next_p = current_position(x_p , y_p , data);
+%             w_n = sqrt(((x_p - x)^2) + ((y_p - y)^2) );
+%             if (isinany(x_p , y_p , time ) == 0)
+%                 
+%                 s(1,pointer) = int32(current_p);
+%                 w(1,pointer) = w_n;
+%                 t(1,pointer) = int32(next_p);
+%                 pointer = pointer +1;
+                
+                %s = [s , int32(current_p)];
+                %w = [w , w_n];
+                %t = [t , int32(next_p)];
+%             end
+            
+            %disp (['y = ' num2str(y)]);
+       y = y+d;
+   end
+   %disp (['x = ' num2str(x)]);
+   y = d;
+   x = x +d;
+      clc;
+      disp(['Progress : ' num2str((pointer/size_of_space)*100) ' %'])
+end
+
+if (data.is_first == 1) && (isinany(data.sx , data.sy , time2 ) == 0) && (isinany(data.sx , data.sy , time ) > 0)
+    current_p = current_position(data.sx ,data.sy , data);
+    
+    if isinany(data.sx , data.sy , time ) == 1
+       % x that we like is time / 10 (int) * 2 distance
+       temp = 50 - ((int32(time/10) * 2) +3); % the safe nearest x
+       delta = data.sx - temp; 
+       x_p = temp ;
+       y_p = data.sy;
+    elseif isinany(data.sx , data.sy , time ) == 2
+       temp = 60 + ((int32(time/10) * 2) +3); % the safe nearest x
+       delta = data.sx - temp; 
+       x_p = temp ;
+       y_p = data.sy;
+    elseif isinany(data.sx , data.sy , time ) == 3
+       temp = 65 - ((int32(time/10) * 2) +3); % the safe nearest x
+       delta = y - temp; 
+       x_p = data.sx  ;
+       y_p = temp;
+    else
+        disp('Where the hell Are you??? -Robot')
+    end
+    x_p = double(x_p);
+    y_p = double(y_p);
+    data.sx = double(data.sx);
+    data.sy = double(data.sy);
+    
+    next_p = current_position(x_p , y_p , data);
+    w_n = sqrt(((x_p - data.sx)^2) + ((y_p - data.sy)^2) );
+    
+    s(1,pointer) = int32(current_p);
+                
+    
+    s(1, size_of_space+1) = int32(current_p); 
+    t(1, size_of_space+1) = int32(next_p);
+    w(1, size_of_space+1) = w_n;
+    
+end
+
+
+
+%s = int32(s);
+%t = int32(t);
+%graphi = graph(s,t,w);
+%plot(graphi);
+data.s = s;
+data.t = t;
+data.w = w;
+data.d = d;
+data.alpha = alpha;
+data.g = graph(s,t,w);
+if data.plot > 0 
+   plot (data.g); 
+end
+data.is_first = 0;
+res = data;
+end
