@@ -55,7 +55,8 @@ for i=1:1:n
     pathy(1,i) = y;
      
     hold on;
-    %circle (x,y,2,1,or); % g1
+    circle (x,y,1,1,or); % g1
+    hold on;
     plot(pathx , pathy , 'r.');
     
     

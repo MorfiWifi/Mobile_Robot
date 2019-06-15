@@ -82,11 +82,13 @@ if(W >= 0)
     if teta  > res
         current_teta = mod(2*pi - (teta - (pi/2)) , 2*pi);
     else
+        
         if res > pi 
-            current_teta = mod(2*pi - (teta - (pi/2)) , 2*pi);
+            
         else
-            current_teta = mod((teta - (pi/2)) , 2*pi);
+            
         end
+        current_teta = mod((teta - (pi/2)) , 2*pi);
     end
 else
     current_teta = mod(teta + (pi/2) , 2*pi);

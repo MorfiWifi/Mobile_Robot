@@ -1,6 +1,6 @@
 function out = isborder(x , y , t )
 
-count = t/10;
+count = t/5; % time step is 5 !!!
 count = count - mod (count , 1);
 
 out = 0;

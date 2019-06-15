@@ -2,7 +2,7 @@ function out = isinany(x , y , t )
 % t = time nothing else
 % adding border for Robot Radios
 border = 1; % robot r = 1 
-count = t/10;
+count = t/5; % time step is 5 !!!
 count = count - mod (count , 1);
 %count = int32(count); %% its spare not continues
 

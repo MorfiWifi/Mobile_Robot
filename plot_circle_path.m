@@ -35,8 +35,8 @@ plot(xunit, yunit ,'g-');
 
 plot(input.res.rx, input.res.ry ,' b*');
 
-if (isfield(input,'txs') && isfield(input,'tys'))
-    plot(input.txs, input.tys , 'b.');
+if (isfield(input,'txs2') && isfield(input,'tys2'))
+    plot(input.txs2, input.tys2 , 'b.');
 end
 hold off
 circle(input.x1,input.y1,1,1, input.res.final_or);

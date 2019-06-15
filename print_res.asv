@@ -1,0 +1,5 @@
+function [ data ] = print_res ( data )
+for i =1 : size(data.xs)
+    disp(  "X: "+data.txs(i) + " , " + "Y: "+data.tys(i) +   
+end
+

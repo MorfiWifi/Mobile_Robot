@@ -47,8 +47,8 @@ if data.fill_obs > 0
        y = 0;
     end
 
-    data.txs = xs;
-    data.tys = ys;
+    data.txs2 = xs;
+    data.tys2 = ys;
 else
     d = 0.5 ; % ? onl can work with this density !! -hell don't know
     while x <= 100 
@@ -82,8 +82,8 @@ else
        y = 0;
     end
 
-    data.txs = xs;
-    data.tys = ys;
+    data.txs2 = xs;
+    data.tys2 = ys;
     
 end
 

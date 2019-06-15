@@ -51,7 +51,7 @@ res = path_to_xy(res); % now we have xs , ys in data
 
 close all;
 disp('part 1 finished');
-fprintf("GOD DOSENT EXIS\'T\n",x);
+fprintf("GOD DOSENT EXIS\'T\n");
 
 res.teta = data.teta;
 

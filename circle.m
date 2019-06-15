@@ -22,9 +22,9 @@ function h = circle(x,y,r,or, teta)
         xunit = r * cos(th) + x;
         yunit = r * sin(th) + y;
         h = plot(xunit, yunit,'g');
-        %xx = ((r*0.9) * cos(teta) + x);
-        %yy = ((r*0.9) * sin(teta) + y);
-        %plot(xx , yy , 'r*');
+        xx = ((r*0.9) * cos(teta) + x);
+        yy = ((r*0.9) * sin(teta) + y);
+        plot(xx , yy , 'r*');
         hold off
     end
 end
